@@ -1,0 +1,134 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.heronarts</groupId>
+	<artifactId>opc2serial</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>OPC2Serial</name>
+	<description>Libraries for real-time procedural 3-D lighting animation and control.</description>
+	<url>https://github.com/heronarts/OPC2Serial</url>
+
+	<licenses>
+		<license>
+			<name>The MIT License</name>
+			<url>https://opensource.org/license/mit</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Mark Slee</name>
+			<email>mark@heronarts.com</email>
+			<organization>Heron Arts</organization>
+			<organizationUrl>http://github.com/heronarts/</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/heronarts/OPC2Serial.git</connection>
+		<developerConnection>scm:git:git://github.com/heronarts/OPC2Serial.git</developerConnection>
+		<url>http://github.com/heronarts/OPC2Serial/tree/master</url>
+	</scm>
+
+	<properties>
+		<maven.compiler.release>21</maven.compiler.release>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven-assembly-plugin.version>3.6.0</maven-assembly-plugin.version>
+		<exec-maven-plugin.version>3.1.1</exec-maven-plugin.version>
+		<maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
+		<maven-source-plugin.version>3.3.0</maven-source-plugin.version>
+		<maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
+		<maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+	</properties>
+
+	<dependencies>
+	  <dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-simple</artifactId>
+		<version>2.0.16</version>
+	  </dependency>
+      <dependency>
+        <groupId>io.github.java-native</groupId>
+        <artifactId>jssc</artifactId>
+        <version>2.10.2</version>
+      </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<compilerArgs>
+						<arg>-Xlint:all,-this-escape</arg>
+						<arg>-Xpkginfo:always</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven-assembly-plugin.version}</version>
+
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>com.heronarts.OPC2Serial</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven-source-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven-javadoc-plugin.version}</version>
+        <configuration>
+          <doclint>all,-missing</doclint>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+		</plugins>
+	</build>
+</project>
