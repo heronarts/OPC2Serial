@@ -187,9 +187,7 @@ public class OPC2Serial {
         baudRate,
         SerialPort.DATABITS_8,
         SerialPort.STOPBITS_1,
-        SerialPort.PARITY_NONE,
-        false,
-        false
+        SerialPort.PARITY_NONE
       );
 
       final byte[] inputData = new byte[4096];
