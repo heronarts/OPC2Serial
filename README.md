@@ -21,7 +21,7 @@ $ mvn clean package
 
 ### Identify the serial port
 ```
-$ java -jar target/target/opc2serial-1.0.0-jar-with-dependencies.jar -list
+$ java -jar target/opc2serial-1.0.0-jar-with-dependencies.jar -list
 Available serial ports:
 /dev/cu.Bluetooth-Incoming-Port
 /dev/cu.debug-console
